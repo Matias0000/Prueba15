@@ -1,0 +1,97 @@
+<div style="display: flex;">
+<h2 style="border: ;"><i>Bienvenido {{main.email}}</i></h2>
+<button class="btn btn-danger my-5" onclick="location.href='/logout'">LOGOUT</button>
+</div>
+
+
+{{!-- <button class="btn btn-danger my-5" onclick="location.href='/logout'">LOGOUT</button> --}}
+
+<h1 style="color:blue;font-weight:bold;">Nuevo producto</h1>
+<form action="/productos" method="post" id="form">
+    <label for="title">Nombre</label>
+    <input type="text" name="title" id="title" required><br>
+    <label for="price">Precio</label>
+    <input type="text" name="price" id="price" required><br>
+    <label for="thumbnail">URL*</label>
+    <input type="text" name="thumbnail" id="thumbnail" required><br>
+    <!-- <label for="id">ID</label>
+                    <input type="text" name="id" id="id"><br> -->
+    {{!-- <input type="submit" value="Cargar" > --}}
+	 <button type="submit">Submit</button>
+</form>
+
+<div >
+	{{#if productos}}
+        <table id="table">
+            <tr>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+            </tr>
+		    {{#each productos}}
+			    <tr>
+                    <td>{{this.title}}</td>
+                    <td>{{this.price}}</td>
+                    <td>
+                        <img src={{this.thumbnail}} style="width: 50px;"></img>
+                    </td>
+                </tr>
+		    {{/each}}
+        </table>
+	{{else}}
+		<span>No hay productos</span>
+	{{/if}}
+
+</div>
+
+
+<div>
+	<h1 style="color:blue;font-weight:bold;">Centro de mensajes</h1>
+	<form id="messages">
+
+		<label for="email">Email</label>
+		<input type="text" id="email" name="email" required>
+
+		<label for="message">Mensaje</label>
+		<input type="text" id="message" name="message" required>
+
+		<label for="age">Edad</label>
+		<input type="text" id="age" name="age" required>
+
+		<label for="alias">Alias</label>
+		<input type="text" id="alias" name="alias"required> 
+
+		<label for="avatar">Avatar</label>
+		<input type="text" id="avatar" name="avatar" required>
+
+		<label for="name">Nombre</label>
+		<input type="text" id="name" name="name" required>
+
+		<label for="lastname">Apellido</label>
+		<input type="text" id="lastname" name="lastname" required>
+
+		<button type="submit">Submit</button>
+	</form>
+	<div id="errors">
+
+	</div>
+	<hr>
+	<div id="compression"></div>
+	<div >
+		<ul id="chat">
+		{{#if messages}}
+		
+			{{#each messages}}
+				<li>
+					<span style="color: blue; font-weight: 600;">{{this.author.id}}: </span>
+					<span style="color: brown;">[{{this.date}}]</span>
+					<span style="color: green; font-style: italic;">{{this.text}}</span>
+				</li>
+			{{/each}}
+		{{else}}
+			<span>No hay mensajes</span>
+		{{/if}}
+		</ul>
+
+	</div>
+</div>
